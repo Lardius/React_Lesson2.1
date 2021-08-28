@@ -8,8 +8,11 @@ const SearchStatus = ({ props }) => {
     classNames += "danger";
     message = " Никто с тобой не тусанет";
   } else if (
-    (1 < props % 10 && props % 10 < 5) ||
-    (11 < props % 100 && props % 100 < 15)
+    1 < props % 10 &&
+    props % 10 < 5 &&
+    props % 100 !== 12 &&
+    props % 100 !== 13 &&
+    props % 100 !== 14
   ) {
     classNames += "primary";
     message = " человека тусанет с тобой сегодня";
