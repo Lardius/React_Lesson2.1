@@ -1,17 +1,15 @@
 import React from "react";
-import TableItem from "../table-item/table-item.jsx";
+import TableItem from "../user/user.jsx";
 
-const Table = ({ props, handleDelete, handleToggleBookMark, favorite }) => {
+const Table = ({ props, handleDelete, handleToggleBookMark }) => {
   const elementTable = props.map((user) => {
     const { _id, ...users } = user;
-    console.log(favorite);
     return (
       <tr key={_id}>
         <TableItem
           {...users}
           handleDelete={() => handleDelete(_id)}
           handleToggleBookMark={() => handleToggleBookMark(_id)}
-          favorite={favorite}
         />
       </tr>
     );

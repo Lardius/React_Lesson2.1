@@ -1,6 +1,8 @@
 import React from "react";
-import "./table-item.css";
+import "./user.css";
 import HumanQualities from "../human-qualities/human-qualities.jsx";
+import BookMark from "../bookmark/bookmark";
+
 const TableItem = ({
   name,
   qualities,
@@ -9,13 +11,8 @@ const TableItem = ({
   rate,
   handleDelete,
   handleToggleBookMark,
-  favorite = false,
+  favorite,
 }) => {
-  let classNames = "bi bi-bookmark-heart";
-  if (!favorite) {
-    console.log(222);
-    classNames += "-fill";
-  }
   const qualiti = qualities.map((item) => {
     const { _id, ...itemEnd } = item;
     return (
@@ -34,9 +31,7 @@ const TableItem = ({
       <td>{completedMeetings}</td>
       <td>{rate}</td>
       <td>
-        <div className="icon">
-          <i className={classNames} onClick={handleToggleBookMark}></i>
-        </div>
+        <BookMark favorite={favorite} onToggleBookMark={handleToggleBookMark} />
       </td>
       <td>
         <button className="btn btn-danger" onClick={handleDelete}>
