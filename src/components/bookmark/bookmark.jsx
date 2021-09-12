@@ -8,7 +8,7 @@ const BookMark = ({ favorite, onToggleBookMark }) => {
                 style={{ cursor: "pointer" }}
                 className={"bi bi-bookmark-heart" + (favorite ? "-fill" : "")}
                 onClick={onToggleBookMark}
-            ></i>
+            />
         </div>
     );
 };

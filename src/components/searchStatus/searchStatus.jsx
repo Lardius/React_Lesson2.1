@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const SearchStatus = ({ props }) => {
     let message = "";
-    let classNames = "badge bg-";
+    let classNames = "badge w-50 bg-";
     if (props === 0) {
         props = "";
         classNames += "danger";

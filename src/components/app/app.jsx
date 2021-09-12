@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import SearchStatus from "../searchStatus/searchStatus.jsx";
 import Table from "../users/users.jsx";
-import API from "../../api";
+import api from "../../api";
 
 const App = () => {
-    const [users, setUsers] = useState(API.users.fetchAll());
+    const [users, setUsers] = useState([]);
     const [value, setValue] = useState(users.length);
+
+    useEffect(() => {
+        api.users.fetchAll().then((data) => setUsers(data));
+    }, []);
 
     const handleDelete = (userId) => {
         setUsers(users.filter((user) => user._id !== userId));
@@ -25,7 +28,6 @@ const App = () => {
 
     return (
         <>
-            <SearchStatus props={value} />
             <Table
                 props={users}
                 handleDelete={handleDelete}

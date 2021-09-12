@@ -14,20 +14,19 @@ const TableItem = ({
     handleToggleBookMark,
     favorite
 }) => {
-    const qualiti = qualities.map((item) => {
-        const { _id, ...itemEnd } = item;
-        return (
-            <div key={_id}>
-                <HumanQualities {...itemEnd} />
-            </div>
-        );
-    });
     return (
         <>
             <th>{name}</th>
             <td>
                 <div className="d-flex align-content-between margin-10">
-                    {qualiti}
+                    {qualities.map((item) => {
+                        const { _id, ...itemEnd } = item;
+                        return (
+                            <div key={_id}>
+                                <HumanQualities {...itemEnd} />
+                            </div>
+                        );
+                    })}
                 </div>
             </td>
             <td key={profession._id}>{profession.name}</td>
@@ -47,11 +46,14 @@ const TableItem = ({
         </>
     );
 };
+TableItem.defaultProps = {
+    favorite: false
+};
 TableItem.propTypes = {
     name: PropTypes.string.isRequired,
     qualities: PropTypes.array.isRequired,
     profession: PropTypes.object.isRequired,
-    completedMeetings: PropTypes.string.isRequired,
+    completedMeetings: PropTypes.number.isRequired,
     rate: PropTypes.number.isRequired,
     handleDelete: PropTypes.func.isRequired,
     handleToggleBookMark: PropTypes.func.isRequired,
