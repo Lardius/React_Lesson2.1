@@ -6,6 +6,7 @@ import BookMark from "../bookmark/bookmark";
 
 const TableItem = ({
     name,
+    _id,
     qualities,
     profession,
     completedMeetings,
@@ -15,7 +16,7 @@ const TableItem = ({
     favorite
 }) => {
     return (
-        <>
+        <tr>
             <th>{name}</th>
             <td>
                 <div className="d-flex align-content-between margin-10">
@@ -31,19 +32,19 @@ const TableItem = ({
             </td>
             <td key={profession._id}>{profession.name}</td>
             <td>{completedMeetings}</td>
-            <td>{rate}</td>
+            <td>{rate}/5</td>
             <td>
                 <BookMark
                     favorite={favorite}
-                    onToggleBookMark={handleToggleBookMark}
+                    onToggleBookMark={() => handleToggleBookMark(_id)}
                 />
             </td>
             <td>
-                <button className="btn btn-danger" onClick={handleDelete}>
+                <button className="btn btn-danger" onClick={() => handleDelete(_id)}>
                     delete
                 </button>
             </td>
-        </>
+        </tr>
     );
 };
 TableItem.defaultProps = {
@@ -51,6 +52,7 @@ TableItem.defaultProps = {
 };
 TableItem.propTypes = {
     name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     qualities: PropTypes.array.isRequired,
     profession: PropTypes.object.isRequired,
     completedMeetings: PropTypes.number.isRequired,

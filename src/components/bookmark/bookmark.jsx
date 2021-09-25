@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./bookmark.css";
 
 const BookMark = ({ favorite, onToggleBookMark }) => {
     return (

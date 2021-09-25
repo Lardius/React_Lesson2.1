@@ -5,11 +5,7 @@ const HumanQualities = ({ name, color }) => {
     let classNames = "m-1 badge bg-";
     classNames += color;
 
-    return (
-        <>
-            <span className={classNames}>{name}</span>
-        </>
-    );
+    return <span className={classNames}>{name}</span>;
 };
 HumanQualities.propTypes = {
     name: PropTypes.string.isRequired,
