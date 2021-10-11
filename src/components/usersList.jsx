@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react";
-import Pagination from "../paginnation/pagination.jsx";
-import { paginate } from "../../utils/paginate";
-import GroupList from "../groupList/groupList";
-import api from "../../api";
-import SearchStatus from "../searchStatus/searchStatus";
+import Pagination from "./pagination.jsx";
+import { paginate } from "../utils/paginate";
+import GroupList from "./groupList";
+import api from "../api";
+import SearchStatus from "./searchStatus";
 import _ from "lodash";
-import UsersTable from "../usersTable/UsersTable";
+import UsersTable from "./UsersTable";
+import PropTypes from "prop-types";
 
-const Users = () => {
-    const pageSize = 6;
+const UsersList = ({ usersList }) => {
+    console.log("usersList", usersList);
+    const pageSize = 4;
+    const [users, setUsers] = useState(usersList);
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfession] = useState();
     const [selectedProf, setSelectedProf] = useState();
     const [sortBy, setSortBy] = useState({ iter: "name", order: "asc" });
-    const [users, setUsers] = useState();
-
-    useEffect(() => {
-        api.users.fetchAll().then((data) => setUsers(data));
-    }, []);
+    console.log("users", users);
 
     const handleDelete = (userId) => {
         setUsers(users.filter((user) => user._id !== userId));
     };
-
     const handleToggleBookMark = (userId) => {
         const newFavorit = users.map((user) => {
             if (user._id === userId) {
@@ -78,13 +76,13 @@ const Users = () => {
                 <div className="d-flex flex-column w-100">
                     <SearchStatus props={count} />
                     {usersCrop.length > 0 &&
-                <UsersTable
-                    users={usersCrop}
-                    onSort={handleSort}
-                    selectedSort={sortBy}
-                    handleDelete={handleDelete}
-                    handleToggleBookMark={handleToggleBookMark}
-                />}
+                  <UsersTable
+                      users={usersCrop}
+                      onSort={handleSort}
+                      selectedSort={sortBy}
+                      handleDelete={handleDelete}
+                      handleToggleBookMark={handleToggleBookMark}
+                  />}
                     <div className="d-flex justify-content-center">
                         <Pagination
                             itemsCount={count}
@@ -99,7 +97,11 @@ const Users = () => {
 
         );
     }
-    return "...";
+    return "Loader .../";
 };
 
-export default Users;
+UsersList.propTypes = {
+    usersList: PropTypes.array.isRequired
+};
+
+export default UsersList;

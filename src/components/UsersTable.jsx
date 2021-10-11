@@ -1,10 +1,10 @@
 import React from "react";
-import TableHeader from "../tableHeader/tableHeader";
+import TableHeader from "./tableHeader";
 import PropTypes from "prop-types";
-import TableBody from "../tableBody/tableBody";
-import BookMark from "../bookmark/bookmark";
-import QualitiesList from "../qualitiesList/qualitiesList";
-import Table from "../Table/Table";
+import TableBody from "./tableBody";
+import BookMark from "./bookmark";
+import QualitiesList from "./qualitiesList";
+import Table from "./Table";
 
 const UserTable = ({ users, onSort, selectedSort, handleToggleBookMark, handleDelete }) => {
     const columns = {
