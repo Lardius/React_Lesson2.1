@@ -1,40 +1,38 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
-import api from "../api";
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
+import api from '../api'
 
 const UsersPage = ({ id }) => {
-    const history = useHistory();
-    const [user, setUser] = useState();
-    useEffect(() => {
-        api.users.getById(id).then((data) => setUser(data));
-    });
-    console.log(user);
-    if (user) {
-        const allUsers = () => {
-            history.push("/users");
-        };
-        console.log("user", user);
-        return <>
-            <div>
-                <h1>{user.name}</h1>
-                <h3>Профессия: {user.profession.name}</h3>
-                {user.qualities.map((item) => {
-                    return <div key={item._id} className={"m-1 badge bg-" + item.color}>{item.name}</div>;
-                })}
-                <h4>CompletedMeetings: {user.completedMeetings}</h4>
-                <h3>Rate: {user.rate}</h3>
-            </div>
-
-            <button onClick={() => { allUsers(); }}>Все пользователи</button>
-        </>;
+  const history = useHistory()
+  const [user, setUser] = useState()
+  useEffect(() => {
+    api.users.getById(id).then((data) => setUser(data))
+  })
+  if (user) {
+    const allUsers = () => {
+      history.push('/users')
     }
-    return "Loader...";
-};
+    return <>
+      <div>
+        <h1>{ user.name }</h1>
+        <h3>Профессия: { user.profession.name }</h3>
+        { user.qualities.map((item) => {
+          return <div key={ item._id } className={ 'm-1 badge bg-' + item.color }>{ item.name }</div>
+        }) }
+        <h4>CompletedMeetings: { user.completedMeetings }</h4>
+        <h3>Rate: { user.rate }</h3>
+      </div>
+
+      <button onClick={ () => allUsers() }>Все пользователи</button>
+    </>
+  }
+  return 'Loader...'
+}
 
 UsersPage.propTypes = {
-    id: PropTypes.string.isRequired,
-    users: PropTypes.array.isRequired
-};
+  id: PropTypes.string.isRequired,
+  users: PropTypes.array.isRequired
+}
 
-export default UsersPage;
+export default UsersPage
