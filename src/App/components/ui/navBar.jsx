@@ -6,10 +6,10 @@ const NavBar = () => {
       <a className="nav-link active" aria-current="page" href="/">Main</a>
     </li>
     <li className="nav-item">
-      <a className="nav-link" href="/Login">Login</a>
+      <a className="nav-link" href="/login">Login</a>
     </li>
     <li className="nav-item">
-      <a className="nav-link" href="/Users">Users</a>
+      <a className="nav-link" href="/users">Users</a>
     </li>
   </ul>
   )

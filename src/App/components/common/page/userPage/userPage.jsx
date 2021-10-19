@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
-import api from '../api'
+import api from '../../../../api'
 
 const UsersPage = ({ id }) => {
   const history = useHistory()
@@ -31,8 +31,7 @@ const UsersPage = ({ id }) => {
 }
 
 UsersPage.propTypes = {
-  id: PropTypes.string.isRequired,
-  users: PropTypes.array.isRequired
+  id: PropTypes.string.isRequired
 }
 
 export default UsersPage

@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import Pagination from './pagination.jsx'
-import { paginate } from '../utils/paginate'
-import GroupList from './groupList'
-import api from '../api'
-import SearchStatus from './searchStatus'
+import Pagination from '../../pagination.jsx'
+import { paginate } from '../../../../utils/paginate'
+import GroupList from '../../groupList'
+import api from '../../../../api'
+import SearchStatus from '../../../ui/searchStatus'
 import _ from 'lodash'
-import UsersTable from './UsersTable'
-import PropTypes from 'prop-types'
+import UsersTable from '../../../ui/UsersTable'
 
-const UsersList = ({ usersList }) => {
+const UsersListPage = () => {
   const pageSize = 4
-  const [users, setUsers] = useState(usersList)
+  const [users, setUsers] = useState()
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfession] = useState()
   const [selectedProf, setSelectedProf] = useState()
   const [sortBy, setSortBy] = useState({ iter: 'name', order: 'asc' })
   const [data, setData] = useState({ inputSearch: '' })
+
+  useEffect(() => {
+    api.users.fetchAll().then((data) => setUsers(data))
+  }, [])
 
   const handleDelete = (userId) => {
     setUsers(users.filter((user) => user._id !== userId))
@@ -58,6 +61,7 @@ const UsersList = ({ usersList }) => {
       [target.name]: target.value
     }))
     setSelectedProf()
+    setCurrentPage(1)
   }
 
   if (users) {
@@ -116,8 +120,4 @@ const UsersList = ({ usersList }) => {
   return 'Loader .../'
 }
 
-UsersList.propTypes = {
-  usersList: PropTypes.array.isRequired
-}
-
-export default UsersList
+export default UsersListPage

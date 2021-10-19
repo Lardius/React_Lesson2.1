@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import TextField from '../components/textField'
-import { validator } from '../utils/validator'
+import { validator } from '../../utils/validator'
+import TextField from '../common/form/textField'
+import api from '../../api'
+import SelectField from '../common/form/selectField'
 
-const Login = () => {
-  const [data, setData] = useState({ email: '', password: '' })
+const RegisterForm = () => {
+  const [data, setData] = useState({ email: '', password: '', profession: '' })
+  const [professions, setProfession] = useState()
   const [error, setError] = useState({})
+
+  useEffect(() => {
+    api.professions.fetchAll().then((data) => setProfession(data))
+  }, [])
+
   const HandleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,
@@ -31,6 +39,10 @@ const Login = () => {
           message: 'Пароль должен состоять минимум из 8 символову',
           value: 8
         }
+    },
+    profession: {
+      isRequired:
+        { message: 'Поле обязательно для заполнения' }
     }
   }
 
@@ -52,33 +64,33 @@ const Login = () => {
     if (!isValid) return
     console.log(data)
   }
-  return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-6 offset-md-3 shadow p-4">
-          <h3 className="mb-4">Login</h3>
-          <form onSubmit={ HandleSubmit }>
-            <TextField
-              label="Email"
-              onHandleChange={ HandleChange }
-              name="email"
-              value={ data.email }
-              error={ error.email }
-            />
 
-            <TextField
-              label="Password"
-              type="password"
-              onHandleChange={ HandleChange }
-              name="password"
-              error={ error.password }
-              value={ data.password }/>
-            <button type="submit" disabled={ !isValid } className="btn btn-primary w-100 mx-auto">Submit</button>
-          </form>
-        </div>
-      </div>
-    </div>
+  return (
+    <form onSubmit={ HandleSubmit }>
+      <TextField
+        label="Email"
+        onHandleChange={ HandleChange }
+        name="email"
+        value={ data.email }
+        error={ error.email }
+      />
+      <TextField
+        label="Password"
+        type="password"
+        onHandleChange={ HandleChange }
+        name="password"
+        error={ error.password }
+        value={ data.password }/>
+      <SelectField
+        label="Выберите Вашу профессию"
+        defaultOption="Choose..."
+        value={data.profession}
+        onChange={HandleChange}
+        error={error.profession}
+        options={professions}/>
+      <button type="submit" disabled={ !isValid } className="btn btn-primary w-100 mx-auto">Submit</button>
+    </form>
   )
 }
 
-export default Login
+export default RegisterForm
