@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import api from '../../../../api'
 
 const UsersPage = ({ id }) => {
   const history = useHistory()
   const [user, setUser] = useState()
-  useEffect(() => {
-    api.users.getById(id).then((data) => setUser(data))
-  })
+  // useEffect(() => {
+  api.users.getById(id).then((data) => setUser(data))
+  // })
+
   if (user) {
     const allUsers = () => {
       history.push('/users')
     }
+    console.log()
     return <>
       <div>
         <h1>{ user.name }</h1>
@@ -25,6 +27,7 @@ const UsersPage = ({ id }) => {
       </div>
 
       <button onClick={ () => allUsers() }>Все пользователи</button>
+      <Link to={'/users/' + id + '/edit'} >Edit</Link>
     </>
   }
   return 'Loader...'
