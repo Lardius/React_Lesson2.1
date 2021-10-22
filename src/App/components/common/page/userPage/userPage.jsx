@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useHistory, Link } from 'react-router-dom'
 import api from '../../../../api'
@@ -6,10 +6,10 @@ import api from '../../../../api'
 const UsersPage = ({ id }) => {
   const history = useHistory()
   const [user, setUser] = useState()
-  // useEffect(() => {
-  api.users.getById(id).then((data) => setUser(data))
-  // })
-
+  useEffect(() => {
+    api.users.getById(id).then((data) => setUser(data))
+  }, [])
+  localStorage.setItem('user', JSON.stringify(user))
   if (user) {
     const allUsers = () => {
       history.push('/users')

@@ -18,7 +18,8 @@ const UsersListPage = () => {
 
   useEffect(() => {
     api.users.fetchAll().then((data) => setUsers(data))
-  })
+    api.professions.fetchAll().then((data) => setProfession(data))
+  }, [])
 
   const handleDelete = (userId) => {
     setUsers(users.filter((user) => user._id !== userId))
@@ -32,10 +33,6 @@ const UsersListPage = () => {
     })
     setUsers(newFavorit)
   }
-
-  useEffect(() => {
-    api.professions.fetchAll().then((data) => setProfession(data))
-  }, [])
   useEffect(() => {
     setCurrentPage(1)
   }, [selectedProf])
