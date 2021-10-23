@@ -7,6 +7,7 @@ const HumanQualities = ({ name, color }) => {
 
   return <span className={ classNames }>{ name }</span>
 }
+
 HumanQualities.propTypes = {
   name: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired

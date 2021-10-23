@@ -21,7 +21,9 @@ const TableBody = ({ data, columns }) => {
           { Object.keys(columns).map((column) => {
             if (column === 'name') {
               const id = item._id
-              return <td key={ column }><Link to={ '/users/' + id }>{ renderContent(item, column) }</Link></td>
+              return <td key={ column }>
+                <Link to={ '/users/' + id }>{ renderContent(item, column) }</Link>
+              </td>
             } else {
               return <td key={ column }>{ renderContent(item, column) }</td>
             }

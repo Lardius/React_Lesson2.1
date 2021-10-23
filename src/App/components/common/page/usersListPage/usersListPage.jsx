@@ -114,7 +114,7 @@ const UsersListPage = () => {
 
     )
   }
-  return 'Loader .../'
+  return <div className="container shadow ">Loader...</div>
 }
 
 export default UsersListPage

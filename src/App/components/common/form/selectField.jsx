@@ -10,8 +10,12 @@ const SelectField = ({ label, value, onChange, defaultOption, options, error }) 
     return 'form-select' + (error ? ' is-invalid' : '')
   }
   const optionsArray = !Array.isArray(options) && typeof (options) === 'object'
-    ? Object.keys(options).map(optionName => ({ name: options[optionName].name, _id: options[optionName]._id }))
+    ? Object.keys(options).map(optionName => ({
+      name: options[optionName].name,
+      _id: options[optionName]._id
+    }))
     : options
+
   return (<div className="mb-4">
     <label htmlFor="validationCustom04" className="form-label">{ label }</label>
     <select

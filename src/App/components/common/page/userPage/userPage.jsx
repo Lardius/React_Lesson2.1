@@ -14,23 +14,24 @@ const UsersPage = ({ id }) => {
     const allUsers = () => {
       history.push('/users')
     }
-    console.log()
     return <>
-      <div>
-        <h1>{ user.name }</h1>
-        <h3>Профессия: { user.profession.name }</h3>
-        { user.qualities.map((item) => {
-          return <div key={ item._id } className={ 'm-1 badge bg-' + item.color }>{ item.name }</div>
-        }) }
-        <h4>CompletedMeetings: { user.completedMeetings }</h4>
-        <h3>Rate: { user.rate }</h3>
-      </div>
+      <div className='container'>
+        <div>
+          <h1>{ user.name }</h1>
+          <h3>Профессия: { user.profession.name }</h3>
+          { user.qualities.map((item) => {
+            return <div key={ item._id } className={ 'm-1 badge bg-' + item.color }>{ item.name }</div>
+          }) }
+          <h4>CompletedMeetings: { user.completedMeetings }</h4>
+          <h3>Rate: { user.rate }</h3>
+        </div>
 
-      <button onClick={ () => allUsers() }>Все пользователи</button>
-      <Link to={'/users/' + id + '/edit'} >Edit</Link>
+        <button className="btn btn-secondary" onClick={ () => allUsers() }>Все пользователи</button>
+        <Link className="btn btn-secondary m-4" to={'/users/' + id + '/edit'} >Edit</Link>
+      </div>
     </>
   }
-  return 'Loader...'
+  return <div className="container shadow ">Loader...</div>
 }
 
 UsersPage.propTypes = {
