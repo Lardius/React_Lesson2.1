@@ -95,52 +95,60 @@ const EditUserPage = () => {
       console.log(dataEnd)
       history.push('/users/' + user._id)
     }
-
+    const back = () => {
+      history.push('/users/' + user._id)
+    }
     return (
-      <form className="container" onSubmit={ HandleSubmit }>
-        <TextField
-          label="Имя"
-          type="text"
-          onHandleChange={ HandleChange }
-          name="name"
-          error={ error.name }
-          value={ data.name }/>
+      <div className="container">
+        <button onClick={back} className="btn btn-primary mb-5 mt-5"><i className="bi bi-backspace m-1"></i>Назад</button>
+        <div className="shadow p-2 w-50 m-auto">
+          <form onSubmit={ HandleSubmit }>
+            <TextField
+              label="Имя"
+              type="text"
+              onHandleChange={ HandleChange }
+              name="name"
+              error={ error.name }
+              value={ data.name }/>
 
-        <TextField
-          label="Электронная почта"
-          onHandleChange={ HandleChange }
-          name="email"
-          value={ data.email }
-          error={ error.email }
-        />
+            <TextField
+              label="Электронная почта"
+              onHandleChange={ HandleChange }
+              name="email"
+              value={ data.email }
+              error={ error.email }
+            />
 
-        <SelectField
-          label="Выберите Вашу профессию"
-          defaultOption="Choose..."
-          value={data.profession}
-          onChange={HandleChange}
-          error={error.profession}
-          options={professions}/>
+            <SelectField
+              label="Выберите Вашу профессию"
+              defaultOption="Choose..."
+              value={data.profession}
+              onChange={HandleChange}
+              error={error.profession}
+              options={professions}/>
 
-        <RadioField options={[
-          { name: 'Male', value: 'male' },
-          { name: 'Female', value: 'female' },
-          { name: 'Other', value: 'other' }
-        ]} onChange={HandleChange}
-        value={data.sex}
-        name="sex"
-        label="Укажите Ваш пол"
-        />
+            <RadioField options={[
+              { name: 'Male', value: 'male' },
+              { name: 'Female', value: 'female' },
+              { name: 'Other', value: 'other' }
+            ]} onChange={HandleChange}
+            value={data.sex}
+            name="sex"
+            label="Укажите Ваш пол"
+            />
 
-        <MultiSelectField
-          defaultValue={data.qualities}
-          onChange={HandleChange}
-          options={qualities}
-          name="qualities"
-          label="Выберите Ваши качества"/>
-        <button type="submit" disabled={ !isValid } className="btn btn-primary w-100 mx-auto">Обновить данные</button>
+            <MultiSelectField
+              defaultValue={data.qualities}
+              onChange={HandleChange}
+              options={qualities}
+              name="qualities"
+              label="Выберите Ваши качества"/>
+            <button type="submit" disabled={ !isValid } className="btn btn-primary w-100 mx-auto"><i
+              className="bi bi-arrow-clockwise m-2"></i>Обновить данные</button>
 
-      </form>
+          </form>
+        </div>
+      </div>
     )
   }
   return <div className="container shadow">Loader...</div>
