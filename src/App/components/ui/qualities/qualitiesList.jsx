@@ -3,16 +3,16 @@ import PropTypes from 'prop-types'
 import HumanQualities from './human-qualities'
 
 const QualitiesList = ({ qualities }) => {
-  return <div className="d-flex ">
+  return <>
     { qualities.map((item) => {
       const { _id, ...itemEnd } = item
       return (
-        <div key={ _id }>
+        <span key={ _id }>
           <HumanQualities { ...itemEnd } />
-        </div>
+        </span>
       )
     }) }
-  </div>
+  </>
 }
 
 QualitiesList.propTypes = {

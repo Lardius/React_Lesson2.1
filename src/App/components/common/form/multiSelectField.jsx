@@ -30,7 +30,7 @@ const MultiSelectField = ({ options, onChange, name, label, defaultValue }) => {
   )
 }
 MultiSelectField.defaultProps = {
-  defaultValue: ''
+  defaultValue: []
 }
 
 MultiSelectField.propTypes = {

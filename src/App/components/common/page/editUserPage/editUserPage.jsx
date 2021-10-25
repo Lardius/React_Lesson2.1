@@ -92,7 +92,6 @@ const EditUserPage = () => {
       const isValid = validate()
       if (!isValid) return null
       api.users.update(user._id, dataEnd).then()
-      console.log(dataEnd)
       history.push('/users/' + user._id)
     }
     const back = () => {
@@ -123,6 +122,7 @@ const EditUserPage = () => {
               label="Выберите Вашу профессию"
               defaultOption="Choose..."
               value={data.profession}
+              name="profession"
               onChange={HandleChange}
               error={error.profession}
               options={professions}/>

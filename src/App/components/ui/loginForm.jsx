@@ -60,8 +60,7 @@ const LoginForm = () => {
   const HandleSubmit = (e) => {
     e.preventDefault()
     const isValid = validate()
-    if (!isValid) return
-    console.log(data)
+    if (!isValid) return null
   }
   return (
 
